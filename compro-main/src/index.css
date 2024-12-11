@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.bg-opacity-custom {
+  background-color: rgba(48, 72, 22, 0.9);
+}
+
+.bg-opacity-header {
+  background-color: rgba(48, 72, 22, 0.7);
+}
+
+  
