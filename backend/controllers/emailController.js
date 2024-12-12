@@ -1,8 +1,9 @@
 const nodemailer = require('nodemailer');
-require('dotenv').config();
+require('dotenv').config({ path: './password.env' });
+
 
 exports.sendEmail = async (req, res) => {
-    const { name, email, company, subject, address } = req.body;
+    const { name, email, company, subject, message } = req.body;
 
     // Konfigurasi Nodemailer
     const transporter = nodemailer.createTransport({
@@ -17,8 +18,9 @@ exports.sendEmail = async (req, res) => {
         from: process.env.EMAIL_USER,
         to: process.env.RECEIVER_EMAIL, // Email tujuan
         subject: subject,
-        text: `Name: ${name}\nEmail: ${email}\nCompany: ${company}\nAddress: ${address}`,
+        text: `Name: ${name}, \nEmail: ${email}\nCompany: ${company}, \nsubject: ${subject}, \nMessage: ${message}`,
     };
+    console.log(process.env.EMAIL_USER, process.env.EMAIL_PASS);
 
     try {
         await transporter.sendMail(mailOptions);
